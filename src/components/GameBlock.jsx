@@ -1,20 +1,25 @@
 import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom';
+import { addMove, decideWinner } from '../redux/game/game';
+import { connect } from 'react-redux';
 
 class GameBlock extends Component {
     state = {
-        move: 0,
-        xMoves: [],
-        oMoves: []
+        move: 0
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        // if(this.props.noOfMoves===this.state.move) {
+            this.props.decideWinner(this.props.noOfMoves % 2 === 1 ? 'xMoves' : 'oMoves', this.props.noOfMoves % 2 === 1 ? this.props.xMoves : this.props.oMoves);
+        // }
     }
 
     onClickBlock = (event) => {
-        if (![...this.state.xMoves, ...this.state.oMoves].includes(Number(event.currentTarget.dataset.block))) {
+        if (![...this.props.xMoves, ...this.props.oMoves].includes(Number(event.currentTarget.dataset.block))) {
             this.onClickAddMark(event.currentTarget);
-            const obj = {};
-            obj[this.state.move % 2 === 0 ? 'xMoves' : 'oMoves'] = [...(this.state.move % 2 === 0 ? [...this.state.xMoves] : [...this.state.oMoves]), Number(event.currentTarget.dataset.block)];
+            this.props.addMove([this.state.move % 2 === 0 ? 'xMoves' : 'oMoves'], [...(this.state.move % 2 === 0 ? [...this.props.xMoves] : [...this.props.oMoves]), Number(event.currentTarget.dataset.block)]);
             this.setState((prev) => {
-                return { move: prev.move + 1, ...obj }
+                return { move: prev.move + 1 }
             });
         }
     }
@@ -40,6 +45,7 @@ class GameBlock extends Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <div className="game m-auto bg-white" style={{ width: 300 }}>
                 {this.renderBlock()}
@@ -48,4 +54,11 @@ class GameBlock extends Component {
     }
 }
 
-export default GameBlock
+const mapStateToProps = state => ({
+    noOfMoves : state.game.noOfMoves,
+    xMoves : state.game.xMoves,
+    oMoves : state.game.oMoves,
+    winner : state.game.winner
+})
+
+export default connect(mapStateToProps, { addMove, decideWinner })(GameBlock);
