@@ -1,5 +1,7 @@
 const ADD_MOVE = "ADD_MOVE";
 const DECIDE_WINNER = "DECIDE_WINNER";
+const MODE = "MODE";
+const PIECE = "PIECE";
 
 const initialState = {
     xMoves: [],
@@ -9,7 +11,9 @@ const initialState = {
     seriesWinner : {
         xMoves : 0,
         oMoves : 0 
-    }
+    },
+    mode: '',
+    piece: ''
 }
 
 export const decideWinner = (user,moves) => dispatch => {
@@ -40,10 +44,21 @@ export const addMove = (user = '', moves = []) => dispatch => {
         type: ADD_MOVE,
         payload: { [user] : moves }
     })
-    decideWinner(user, moves);
 }
 
+export const selectMode = (mode='SINGLE') => dispatch => {
+    dispatch({
+        type: MODE,
+        payload: { mode : mode }
+    })
+}
 
+export const selectPiece = (peice='X') => dispatch => {
+    dispatch({
+        type: PIECE,
+        payload: { peice : peice }
+    })
+}
 
 const gameReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -62,6 +77,12 @@ const gameReducer = (state = initialState, action) => {
                     ...state.seriesWinner,
                     [Object.values(action.payload)[0]] : state.seriesWinner[Object.values(action.payload)[0]]+1
                 }
+            }
+        case MODE:
+        case PIECE:
+            return {
+                ...state,
+                ...action.payload
             }
         default: 
             return {
