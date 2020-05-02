@@ -38,7 +38,7 @@ class GameBlock extends Component {
         let blockGroup = [];
         let rowBlock = [];
         for(let i = 1 ; i<=9 ; i++) {
-            const borderClass = i<=6 ? i%3!==0 ? 'border-bottom-right-custom' : 'border-bottom-custom' : i!=9 ? 'border-right-custom' : '';
+            const borderClass = i<=6 ? i%3!==0 ? 'border-bottom-right-custom' : 'border-bottom-custom' : i!==9 ? 'border-right-custom' : '';
             rowBlock.push(<div className={`col ${borderClass} ${this.props.xMoves.includes(i) ? "block-x" : this.props.oMoves.includes(i) ? "block-o" : ""}`} data-block={i} onClick={this.onClickBlock}></div>)
             if(i%3 === 0) {
                 blockGroup.push(<div className="row block-row m-auto">{rowBlock}</div>);

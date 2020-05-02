@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
     Link
 } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-import { selectMode } from '../redux/game/game';
+import { selectMode, resetGame } from '../redux/game/game';
 
 const ModeSelection = () => {
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(resetGame());    
+    }, []); 
+    
     return (
         <div className="container mx-auto mt-5">
             <div className="m-auto" style={{ width: 300, height: '400px' }}>
