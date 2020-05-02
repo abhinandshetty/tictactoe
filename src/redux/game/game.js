@@ -117,7 +117,8 @@ const gameReducer = (state = initialState, action) => {
             }
         case PIECE:
             return {
-                ...state,
+                ...initialState,
+                ...state.mode,
                 ...action.payload,
                 turn: action.payload.piece !== 'xMoves',
             }
