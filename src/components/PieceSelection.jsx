@@ -10,10 +10,10 @@ function PieceSelection() {
                 </div>
                 <div className="row mx-auto mt-3">
                     <div className="col">
-                        <div className="block-x" style={{ fontSize: 130 }}>X</div>
+                        <div className="block-x" style={{ fontSize: 130 }}></div>
                     </div>
                     <div className="col">
-                        <div className="block-o mr-3" style={{ fontSize: 130 }}>O</div>
+                        <div className="block-o mr-3" style={{ fontSize: 130 }}></div>
                     </div>
                 </div>
                 <div className="row mx-auto">

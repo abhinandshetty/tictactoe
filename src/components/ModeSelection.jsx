@@ -8,8 +8,8 @@ function ModeSelection() {
         <div className="container mx-auto mt-5">
             <div className="m-auto" style={{ width: 300, height: '400px' }}>
                 <div className="row" style={{ marginLeft: 45 }}>
-                    <div className="block-x ml-3" style={{ fontSize: 130 }}>X</div>
-                    <div className="block-o mr-3" style={{ fontSize: 130 }}>O</div>
+                    <div className="block-x ml-3" style={{ fontSize: 130 }}></div>
+                    <div className="block-o mr-3" style={{ fontSize: 130 }}></div>
                 </div>
 
                 <div className="row mt-5">
