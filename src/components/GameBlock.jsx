@@ -16,7 +16,8 @@ class GameBlock extends Component {
     performBotMove = () => {
         if(this.props.mode==='SINGLE' && this.props.turn) {
             let exclusionList = blockValueList.filter(value1 => [...this.props.xMoves,...this.props.oMoves].every(value2 => value1 !== value2));           
-            this.onAddMove(exclusionList[Math.ceil(Math.random()*exclusionList.length-1)])
+            if(exclusionList.length)
+                this.onAddMove(exclusionList[Math.ceil(Math.random()*exclusionList.length-1)])
         }
     }
 
