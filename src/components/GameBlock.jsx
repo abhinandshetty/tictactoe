@@ -31,7 +31,7 @@ class GameBlock extends Component {
     render() {
         console.log(this.props)
         return (
-            <div className="game m-auto bg-white" id="game" style={{ width: 300 }}>
+            <div className="game mx-auto bg-white" id="game" style={{ width: 300 }}>
                 {this.renderBlock()}
             </div>
         )

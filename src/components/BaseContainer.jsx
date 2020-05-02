@@ -3,7 +3,7 @@ import Score from './Score';
 import GameBlock from './GameBlock';
 
 const  BaseContainer = () => (
-    <div className="container m-auto">
+    <div className="container mx-auto mt-5">
         <Score />
         <GameBlock />
     </div>
