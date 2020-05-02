@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 import { selectPiece } from '../redux/game/game';
+import SettingsButton from './SettingsButton';
 
 const PieceSelection = () => {
     const dispatch = useDispatch();
@@ -33,11 +34,11 @@ const PieceSelection = () => {
                 </div>
 
                 <div className="row mt-5">
-                    <Link to="/gameplay" className="btn bg-white m-auto custom-btn" onClick={() => dispatch(selectPiece(piece))}>
+                    <Link to="/gameplay" className="btn bg-white m-auto custom-btn btn-shadow" onClick={() => dispatch(selectPiece(piece))}>
                         Continue
                     </Link>
                 </div>
-
+                <SettingsButton />
             </div>
         </div>
     )

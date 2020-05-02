@@ -4,6 +4,7 @@ import {
 } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { selectMode, resetGame } from '../redux/game/game';
+import SettingsButton from './SettingsButton';
 
 const ModeSelection = () => {
     const dispatch = useDispatch();
@@ -23,15 +24,16 @@ const ModeSelection = () => {
                     <h6 className="m-auto">Choose your play mode</h6>
                 </div>
                 <div className="row mt-5">
-                    <Link to="/piece-selection" className="btn btn-primary m-auto custom-btn" onClick={()=> dispatch(selectMode('SINGLE'))}>
+                    <Link to="/piece-selection" className="btn btn-primary m-auto custom-btn btn-shadow" onClick={()=> dispatch(selectMode('SINGLE'))}>
                         With AI
                     </Link>
                 </div>
                 <div className="row mt-3">
-                    <Link to="/gameplay" className="btn bg-white m-auto custom-btn" onClick={()=> dispatch(selectMode('DOUBLE'))}>
+                    <Link to="/gameplay" className="btn bg-white m-auto custom-btn btn-shadow" onClick={()=> dispatch(selectMode('DOUBLE'))}>
                         With a friend
                     </Link>
                 </div>
+                <SettingsButton />
             </div>
         </div>
     )
