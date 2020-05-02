@@ -16,10 +16,10 @@ const PieceSelection = () => {
                 </div>
                 <div className="row mx-auto mt-1">
                     <div className="col">
-                        <div className="block-x icon-font-main"></div>
+                        <div className="block-x icon-font-main" style={{opacity : piece ==='xMoves' ? 1 : 0.4}}></div>
                     </div>
                     <div className="col">
-                        <div className="block-o mr-3 icon-font-main"></div>
+                        <div className="block-o mr-3 icon-font-main" style={{opacity : piece ==='oMoves' ? 1 : 0.4}}></div>
                     </div>
                 </div>
                 <div className="row mx-auto">
