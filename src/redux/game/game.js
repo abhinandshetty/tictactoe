@@ -13,10 +13,11 @@ const initialState = {
         oMoves : 0 
     },
     mode: '',
-    piece: ''
+    piece: '',
+    turn: '',
 }
 
-export const decideWinner = (user,moves, noOfMoves) => dispatch => {
+export const decideWinner = (user,moves, noOfMoves,callback = () => {}) => dispatch => {
     if(moves.length>2) {
         if((moves.includes(1) && moves.includes(2) && moves.includes(3)) || 
         (moves.includes(4) && moves.includes(5) && moves.includes(6)) || 
@@ -32,7 +33,7 @@ export const decideWinner = (user,moves, noOfMoves) => dispatch => {
                 payload : {
                     winner : user
                 }
-            })
+            });
         } else {
             if(noOfMoves===9) {
                 dispatch({
@@ -45,7 +46,8 @@ export const decideWinner = (user,moves, noOfMoves) => dispatch => {
         }
         
     }
-    
+    callback();
+
 }
 
 export const addMove = (user = '', moves = []) => dispatch => {
@@ -62,26 +64,41 @@ export const selectMode = (mode='SINGLE') => dispatch => {
     })
 }
 
-export const selectPiece = (peice='X') => dispatch => {
+export const selectPiece = (piece='X') => dispatch => {
     dispatch({
         type: PIECE,
-        payload: { peice : peice }
+        payload: { piece : piece }
     })
 }
 
 const gameReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MOVE:
+            if(!state.winner) {
+                return {
+                    ...state,
+                    ...action.payload,
+                    winner: null,
+                    turn: state.mode==='SINGLE' ? state.piece===Object.keys(action.payload)[0] : null,
+                    noOfMoves: state.noOfMoves + 1
+                }
+            }
+            return {
+                ...state,
+                noOfMoves: 0,
+                xMoves : [],
+                oMoves: [],
+                turn : state.piece!=='xMoves',
+                winner: null
+            }
+
+            
+        case DECIDE_WINNER:
             return {
                 ...state,
                 ...action.payload,
-                winner: null,
-                noOfMoves: state.noOfMoves + 1
-            }
-        case DECIDE_WINNER:
-            return {
-                ...initialState,
-                ...action.payload,
+                xMoves: [],
+                oMoves: [],
                 seriesWinner : {
                     ...state.seriesWinner,
                     [Object.values(action.payload)[0]] : state.seriesWinner[Object.values(action.payload)[0]]+1

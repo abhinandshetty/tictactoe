@@ -5,8 +5,10 @@ import { connect } from 'react-redux';
 class GameBlock extends Component {
     componentDidUpdate(prevProps){
         this.props.decideWinner(this.props.noOfMoves % 2 === 1 ? 'xMoves' : 'oMoves', this.props.noOfMoves % 2 === 1 ? this.props.xMoves : this.props.oMoves, this.props.noOfMoves);
-        // if(this.props!==prevProps)
-        //     this.onAddMove([1,2,3,4,5,6,7,8,9].filter(o1 => [...this.props.xMoves,...this.props.oMoves].every(o2 => o1 === o2))[Math.ceil(Math.random()*[1,2,3,4,5,6,7,8,9].filter(o1 => [4,6,8].every(o2 => o1 !== o2)).length)])
+        if(this.props.mode==='SINGLE' && this.props.turn) {
+            let elems = [1,2,3,4,5,6,7,8,9].filter(o1 => [...this.props.xMoves,...this.props.oMoves].every(o2 => o1 !== o2))
+            this.onAddMove(elems[Math.ceil(Math.random()*elems.length)])
+        }
     }
 
     onClickBlock = (event) => {
@@ -19,6 +21,9 @@ class GameBlock extends Component {
         this.props.addMove([this.props.noOfMoves % 2 === 0 ? 'xMoves' : 'oMoves'], [...(this.props.noOfMoves % 2 === 0 ? [...this.props.xMoves] : [...this.props.oMoves]), blockNo]);
     }
 
+    onBotMove = () => {
+
+    }
 
     renderBlock = () => {
         let blockGroup = [];
@@ -48,7 +53,9 @@ const mapStateToProps = state => ({
     xMoves : state.game.xMoves,
     oMoves : state.game.oMoves,
     winner : state.game.winner,
-    seriesWinner : state.game.seriesWinner
+    seriesWinner : state.game.seriesWinner,
+    mode : state.game.mode,
+    turn : state.game.turn
 })
 
 export default connect(mapStateToProps, { addMove, decideWinner })(GameBlock);
