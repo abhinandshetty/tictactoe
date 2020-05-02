@@ -130,3 +130,16 @@
 .piece-section {
   width: 300px;
 }
+
+.border-bottom-right-custom {
+  border-right: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+
+.border-bottom-custom {
+  border-bottom: 1px solid lightgray;
+}
+
+.border-right-custom {
+  border-right: 1px solid lightgray;
+}

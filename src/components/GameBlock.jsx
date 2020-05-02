@@ -38,7 +38,8 @@ class GameBlock extends Component {
         let blockGroup = [];
         let rowBlock = [];
         for(let i = 1 ; i<=9 ; i++) {
-            rowBlock.push(<div className={`col border ${this.props.xMoves.includes(i) ? "block-x" : this.props.oMoves.includes(i) ? "block-o" : ""}`} data-block={i} onClick={this.onClickBlock}></div>)
+            const borderClass = i<=6 ? i%3!==0 ? 'border-bottom-right-custom' : 'border-bottom-custom' : i!=9 ? 'border-right-custom' : '';
+            rowBlock.push(<div className={`col ${borderClass} ${this.props.xMoves.includes(i) ? "block-x" : this.props.oMoves.includes(i) ? "block-o" : ""}`} data-block={i} onClick={this.onClickBlock}></div>)
             if(i%3 === 0) {
                 blockGroup.push(<div className="row block-row m-auto">{rowBlock}</div>);
                 rowBlock = [];
@@ -49,7 +50,7 @@ class GameBlock extends Component {
 
     render() {
         return (
-            <div className="game mx-auto bg-white" id="game" style={{ width: 300 }}>
+            <div className="game mx-auto bg-white p-3" id="game" style={{ width: 300 }}>
                 {this.renderBlock()}
             </div>
         )
