@@ -7,6 +7,6 @@ const  BaseContainer = () => (
         <Score />
         <GameBlock />
     </div>
-);
+); 
 
 export default BaseContainer

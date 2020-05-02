@@ -45,6 +45,7 @@
   -webkit-box-shadow: 0px 4px 23px -10px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 4px 23px -10px rgba(0,0,0,0.75);
   box-shadow: 0px 4px 23px -10px rgba(0,0,0,0.75);
+  width: 150px;
 }
 
 .block-o:before {
@@ -114,4 +115,18 @@
     
     -webkit-transform: scale(1);
     transform: scale(1);
+}
+
+
+.icon-font-main {
+  font-size: 130px;
+}
+
+.custom-radio {
+  width: 25px;
+  height: 25px;
+}
+
+.piece-section {
+  width: 300px;
 }

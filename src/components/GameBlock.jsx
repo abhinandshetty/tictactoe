@@ -2,22 +2,21 @@ import React, { Component } from 'react'
 import { addMove, decideWinner } from '../redux/game/game';
 import { connect } from 'react-redux';
 
+const blockValueList = [1,2,3,4,5,6,7,8,9];
+
 class GameBlock extends Component {
     componentDidMount(){
-        if(this.props.mode==='SINGLE' && this.props.turn) {
-            let elems = [1,2,3,4,5,6,7,8,9].filter(o1 => [...this.props.xMoves,...this.props.oMoves].every(o2 => o1 !== o2))
-            const index = Math.ceil(Math.random()*elems.length-1);
-            console.log(elems, index);
-            this.onAddMove(elems[index])
-        }
+        this.performBotMove();
     }
     componentDidUpdate(){
         this.props.decideWinner(this.props.noOfMoves % 2 === 1 ? 'xMoves' : 'oMoves', this.props.noOfMoves % 2 === 1 ? this.props.xMoves : this.props.oMoves, this.props.noOfMoves);
+        this.performBotMove();
+    }
+
+    performBotMove = () => {
         if(this.props.mode==='SINGLE' && this.props.turn) {
-            let elems = [1,2,3,4,5,6,7,8,9].filter(o1 => [...this.props.xMoves,...this.props.oMoves].every(o2 => o1 !== o2))
-            const index = Math.ceil(Math.random()*elems.length-1);
-            console.log(elems, index);
-            this.onAddMove(elems[index])
+            let exclusionList = blockValueList.filter(value1 => [...this.props.xMoves,...this.props.oMoves].every(value2 => value1 !== value2));           
+            this.onAddMove(exclusionList[Math.ceil(Math.random()*exclusionList.length-1)])
         }
     }
 
