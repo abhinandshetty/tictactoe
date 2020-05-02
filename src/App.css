@@ -179,10 +179,12 @@
   border-top: none !important;
 }
 
-
 .modal-btn {
     border-radius: 20px !important;
-    width: 110px;
+}
+
+.modal-body {
+    text-align: center;
 }
 
 @media screen and (max-width: 500px) {

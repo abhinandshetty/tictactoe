@@ -10,14 +10,15 @@ function CustomModal({show, handleClose, children}) {
         <Modal.Footer>
           <Row className="w-100"> 
             <Col>
-            <Button className="modal-btn btn-shadow" variant="success" onClick={() => handleClose(true)}>
+            <Button className="modal-btn btn-shadow w-100" variant="success" onClick={() => handleClose(true)}>
             Yes
           </Button>
             </Col>
-            <Button className="modal-btn btn-shadow" variant="secondary" onClick={() => handleClose(false)}>
+            
+            <Col>
+            <Button className="modal-btn btn-shadow w-100" variant="secondary" onClick={() => handleClose(false)}>
             No
           </Button>
-            <Col>
             </Col>
           </Row>
          
