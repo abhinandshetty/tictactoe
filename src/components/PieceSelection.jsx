@@ -5,7 +5,7 @@ import { selectPiece } from '../redux/game/game';
 
 function PieceSelection() {
     const dispatch = useDispatch();
-    const [piece, setPiece] = useState('oMoves')
+    const [piece, setPiece] = useState('xMoves')
 
     return (
         <div className="container mx-auto mt-5">
@@ -23,11 +23,11 @@ function PieceSelection() {
                 </div>
                 <div className="row mx-auto">
                     <div className="col text-center">
-                        <input type="radio" id="X" name="piece" value="X" style={{ width: 25, height: 25 }} checked onClick={()=>setPiece('xMoves')} />
+                        <input type="radio" id="X" name="piece" value="X" style={{ width: 25, height: 25 }} checked={piece==='xMoves'} onClick={()=>setPiece('xMoves')} />
                         <label htmlFor="X"></label>
                     </div>
                     <div className="col text-center">
-                        <input type="radio" id="O" name="piece" value="O" style={{ width: 25, height: 25 }} onClick={()=>setPiece('oMoves')}/>
+                        <input type="radio" id="O" name="piece" value="O" style={{ width: 25, height: 25 }} checked={piece==='oMoves'} onClick={()=>setPiece('oMoves')}/>
                         <label htmlFor="O"></label>
                     </div>
                 </div>

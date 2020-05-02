@@ -3,11 +3,21 @@ import { addMove, decideWinner } from '../redux/game/game';
 import { connect } from 'react-redux';
 
 class GameBlock extends Component {
-    componentDidUpdate(prevProps){
+    componentDidMount(){
+        if(this.props.mode==='SINGLE' && this.props.turn) {
+            let elems = [1,2,3,4,5,6,7,8,9].filter(o1 => [...this.props.xMoves,...this.props.oMoves].every(o2 => o1 !== o2))
+            const index = Math.ceil(Math.random()*elems.length-1);
+            console.log(elems, index);
+            this.onAddMove(elems[index])
+        }
+    }
+    componentDidUpdate(){
         this.props.decideWinner(this.props.noOfMoves % 2 === 1 ? 'xMoves' : 'oMoves', this.props.noOfMoves % 2 === 1 ? this.props.xMoves : this.props.oMoves, this.props.noOfMoves);
         if(this.props.mode==='SINGLE' && this.props.turn) {
             let elems = [1,2,3,4,5,6,7,8,9].filter(o1 => [...this.props.xMoves,...this.props.oMoves].every(o2 => o1 !== o2))
-            this.onAddMove(elems[Math.ceil(Math.random()*elems.length)])
+            const index = Math.ceil(Math.random()*elems.length-1);
+            console.log(elems, index);
+            this.onAddMove(elems[index])
         }
     }
 
@@ -39,7 +49,6 @@ class GameBlock extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div className="game mx-auto bg-white" id="game" style={{ width: 300 }}>
                 {this.renderBlock()}

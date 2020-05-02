@@ -99,16 +99,23 @@ const gameReducer = (state = initialState, action) => {
                 ...action.payload,
                 xMoves: [],
                 oMoves: [],
+                noOfMoves: 0,
+                turn : state.piece!=='xMoves',
                 seriesWinner : {
                     ...state.seriesWinner,
                     [Object.values(action.payload)[0]] : state.seriesWinner[Object.values(action.payload)[0]]+1
                 }
             }
         case MODE:
-        case PIECE:
             return {
                 ...state,
                 ...action.payload
+            }
+        case PIECE:
+            return {
+                ...state,
+                ...action.payload,
+                turn : action.payload.piece!=='xMoves',
             }
         default: 
             return {
