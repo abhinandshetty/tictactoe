@@ -180,8 +180,8 @@
 @media screen and (max-width: 500px) {
   .card-bg, .game-card-bg{
     background-color: transparent;
-    width: '';
-    height: '';
+    width: 350px !important;
+    height: '' !important;
     -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
