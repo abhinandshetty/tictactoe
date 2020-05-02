@@ -11,7 +11,7 @@ function Score() {
                     Player'X'
                 </div>
                 <div className="col-3 m-auto text-center bg-white score-count">
-                    {scores["xMoves"]+"-"+scores["oMoves"]}
+                    {scores["xMoves"]+" - "+scores["oMoves"]}
                 </div>
                 <div className="col-3 m-auto">
                     Player'O'
