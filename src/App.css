@@ -143,3 +143,29 @@
 .border-right-custom {
   border-right: 1px solid lightgray;
 }
+
+
+
+
+.card-bg {
+/*   background-color: rgb(243, 243, 243);
+ */  
+ background-color: rgb(241, 241, 241);
+  width: 350px;
+  height: 550px;
+  -webkit-box-shadow: 0px 4px 23px -8px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 4px 23px -8px rgba(0,0,0,0.75);
+  box-shadow: 0px 4px 23px -8px rgba(0,0,0,0.75);
+}
+
+@media screen and (max-width: 450px) {
+  .card-bg{
+    background-color: transparent;
+    width: '';
+    height: '';
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+ }
+  
+}

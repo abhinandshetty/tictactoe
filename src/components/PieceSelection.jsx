@@ -9,11 +9,11 @@ const PieceSelection = () => {
 
     return (
         <div className="container mx-auto mt-5">
-            <div className="m-auto piece-section">
+            <div className="card-bg m-auto piece-section">
                 <div className="row">
-                    <h6 className="m-auto">Pick your side</h6>
+                    <h6 className="mx-auto mt-4">Pick your side</h6>
                 </div>
-                <div className="row mx-auto mt-3">
+                <div className="row mx-auto mt-1">
                     <div className="col">
                         <div className="block-x icon-font-main"></div>
                     </div>

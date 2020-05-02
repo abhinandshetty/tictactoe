@@ -14,8 +14,8 @@ const ModeSelection = () => {
     
     return (
         <div className="container mx-auto mt-5">
-            <div className="m-auto" style={{ width: 300, height: '400px' }}>
-                <div className="row" style={{ marginLeft: 45 }}>
+            <div className="card-bg m-auto" >
+                <div className="row" style={{ marginLeft: 70 }}>
                     <div className="block-x ml-3 icon-font-main"></div>
                     <div className="block-o mr-3 icon-font-main"></div>
                 </div>
