@@ -4,44 +4,37 @@ import { addMove, decideWinner } from '../redux/game/game';
 import { connect } from 'react-redux';
 
 class GameBlock extends Component {
-    state = {
-        move: 0
-    }
 
     componentDidUpdate(prevProps, prevState){
-        // if(this.props.noOfMoves===this.state.move) {
-            this.props.decideWinner(this.props.noOfMoves % 2 === 1 ? 'xMoves' : 'oMoves', this.props.noOfMoves % 2 === 1 ? this.props.xMoves : this.props.oMoves);
-        // }
+        this.props.decideWinner(this.props.noOfMoves % 2 === 1 ? 'xMoves' : 'oMoves', this.props.noOfMoves % 2 === 1 ? this.props.xMoves : this.props.oMoves);
+        
     }
 
     onClickBlock = (event) => {
         if (![...this.props.xMoves, ...this.props.oMoves].includes(Number(event.currentTarget.dataset.block))) {
             this.onClickAddMark(event.currentTarget);
-            this.props.addMove([this.state.move % 2 === 0 ? 'xMoves' : 'oMoves'], [...(this.state.move % 2 === 0 ? [...this.props.xMoves] : [...this.props.oMoves]), Number(event.currentTarget.dataset.block)]);
-            this.setState((prev) => {
-                return { move: prev.move + 1 }
-            });
+            this.props.addMove([this.props.noOfMoves % 2 === 0 ? 'xMoves' : 'oMoves'], [...(this.props.noOfMoves % 2 === 0 ? [...this.props.xMoves] : [...this.props.oMoves]), Number(event.currentTarget.dataset.block)]);
         }
     }
 
     onClickAddMark = (target) => {
-        const elem = document.createElement('div')
-        elem.classList.add(`block-${this.state.move % 2 === 0 ? 'x' : 'o'}`)
-        elem.innerHTML = `${this.state.move % 2 === 0 ? 'X' : 'O'}`;
-        findDOMNode(target).appendChild(elem)
+        const iconMark = document.createElement('div')
+        iconMark.classList.add(`block-${this.props.noOfMoves % 2 === 0 ? 'x' : 'o'}`)
+        iconMark.innerHTML = `${this.props.noOfMoves % 2 === 0 ? 'X' : 'O'}`;
+        findDOMNode(target).appendChild(iconMark)
     }
 
-    renderBlock = () =>{
-        let elems = [];
+    renderBlock = () => {
+        let blockGroup = [];
         let rowBlock = [];
         for(let i = 1 ; i<=9 ; i++) {
             rowBlock.push(<div className="col border" data-block={i} onClick={this.onClickBlock}></div>)
             if(i%3 === 0) {
-                elems.push(<div className="row block-row m-auto">{rowBlock}</div>);
+                blockGroup.push(<div className="row block-row m-auto">{rowBlock}</div>);
                 rowBlock = [];
             }
         }
-        return elems;
+        return blockGroup;
     }
 
     render() {

@@ -5,19 +5,23 @@ const initialState = {
     xMoves: [],
     oMoves: [],
     noOfMoves: 0,
-    winner : null
+    winner : null,
+    seriesWinner : {
+        xMoves : 0,
+        yMoves : 0 
+    }
 }
 
 export const decideWinner = (user,moves) => dispatch => {
     if(moves.length>2) {
-        if(moves.includes(1) && moves.includes(2) && moves.includes(3) || 
-        moves.includes(4) && moves.includes(5) && moves.includes(6) || 
-        moves.includes(7) && moves.includes(8) && moves.includes(9) ||
-        moves.includes(1) && moves.includes(4) && moves.includes(7) ||
-        moves.includes(2) && moves.includes(5) && moves.includes(8) ||
-        moves.includes(3) && moves.includes(6) && moves.includes(9) ||
-        moves.includes(1) && moves.includes(5) && moves.includes(9) ||
-        moves.includes(3) && moves.includes(5) && moves.includes(7)
+        if((moves.includes(1) && moves.includes(2) && moves.includes(3)) || 
+        (moves.includes(4) && moves.includes(5) && moves.includes(6)) || 
+        (moves.includes(7) && moves.includes(8) && moves.includes(9)) ||
+        (moves.includes(1) && moves.includes(4) && moves.includes(7)) ||
+        (moves.includes(2) && moves.includes(5) && moves.includes(8)) ||
+        (moves.includes(3) && moves.includes(6) && moves.includes(9)) ||
+        (moves.includes(1) && moves.includes(5) && moves.includes(9)) ||
+        (moves.includes(3) && moves.includes(5) && moves.includes(7))
         ) {
             dispatch({
                 type: DECIDE_WINNER,
@@ -52,7 +56,10 @@ const gameReducer = (state = initialState, action) => {
         case DECIDE_WINNER:
             return {
                 ...initialState,
-                ...action.payload
+                ...action.payload,
+                seriesWinner : {
+                    [Object.keys(action.payload)[0]] : state[Object.keys(action.payload)[0]]+1
+                }
             }
         default: 
             return {
