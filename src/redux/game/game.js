@@ -16,7 +16,7 @@ const initialState = {
     piece: ''
 }
 
-export const decideWinner = (user,moves) => dispatch => {
+export const decideWinner = (user,moves, noOfMoves) => dispatch => {
     if(moves.length>2) {
         if((moves.includes(1) && moves.includes(2) && moves.includes(3)) || 
         (moves.includes(4) && moves.includes(5) && moves.includes(6)) || 
@@ -33,6 +33,15 @@ export const decideWinner = (user,moves) => dispatch => {
                     winner : user
                 }
             })
+        } else {
+            if(noOfMoves===9) {
+                dispatch({
+                    type: DECIDE_WINNER,
+                    payload : {
+                        winner : null
+                    }
+                })
+            }
         }
         
     }

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 class GameBlock extends Component {
     componentDidUpdate(prevProps){
-        this.props.decideWinner(this.props.noOfMoves % 2 === 1 ? 'xMoves' : 'oMoves', this.props.noOfMoves % 2 === 1 ? this.props.xMoves : this.props.oMoves);
+        this.props.decideWinner(this.props.noOfMoves % 2 === 1 ? 'xMoves' : 'oMoves', this.props.noOfMoves % 2 === 1 ? this.props.xMoves : this.props.oMoves, this.props.noOfMoves);
         // if(this.props!==prevProps)
         //     this.onAddMove([1,2,3,4,5,6,7,8,9].filter(o1 => [...this.props.xMoves,...this.props.oMoves].every(o2 => o1 === o2))[Math.ceil(Math.random()*[1,2,3,4,5,6,7,8,9].filter(o1 => [4,6,8].every(o2 => o1 !== o2)).length)])
     }
