@@ -8,7 +8,7 @@ const initialState = {
     winner : null,
     seriesWinner : {
         xMoves : 0,
-        yMoves : 0 
+        oMoves : 0 
     }
 }
 
@@ -51,6 +51,7 @@ const gameReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.payload,
+                winner: null,
                 noOfMoves: state.noOfMoves + 1
             }
         case DECIDE_WINNER:
@@ -58,7 +59,8 @@ const gameReducer = (state = initialState, action) => {
                 ...initialState,
                 ...action.payload,
                 seriesWinner : {
-                    [Object.keys(action.payload)[0]] : state[Object.keys(action.payload)[0]]+1
+                    ...state.seriesWinner,
+                    [Object.values(action.payload)[0]] : state.seriesWinner[Object.values(action.payload)[0]]+1
                 }
             }
         default: 

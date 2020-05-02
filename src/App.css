@@ -35,9 +35,9 @@
 
 .score-count {
   border-radius: 20px !important;
-  -webkit-box-shadow: 0px 4px 76px -24px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 4px 76px -24px rgba(0,0,0,0.75);
-  box-shadow: 0px 4px 76px -24px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 4px 15px -7px black;
+  -moz-box-shadow: 0px 4px 15px -7px black;
+  box-shadow: 0px 4px 15px -7px black;
 }
 
 .custom-btn {
@@ -45,4 +45,12 @@
   -webkit-box-shadow: 0px 4px 23px -10px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 4px 23px -10px rgba(0,0,0,0.75);
   box-shadow: 0px 4px 23px -10px rgba(0,0,0,0.75);
+}
+
+.block-o:before {
+  content: "O";
+}
+
+.block-x:before {
+  content: "X";
 }

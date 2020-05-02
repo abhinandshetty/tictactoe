@@ -1,17 +1,20 @@
 import React from 'react'
+import { useSelector } from "react-redux";
 
 function Score() {
+    const scores = useSelector(state => state.game.seriesWinner);
+
     return (
         <div className="row my-4">
-            <div className=" row m-auto" style={{width : 300}}>
+            <div className=" row m-auto" style={{width : 350}}>
                 <div className="col-3 m-auto">
-                    Player1
+                    Player'X'
                 </div>
-                <div className="col-3 m-auto text-center bg-white score-count" style={{borderRadius: 20}}>
-                    1-1
+                <div className="col-3 m-auto text-center bg-white score-count">
+                    {scores["xMoves"]+"-"+scores["oMoves"]}
                 </div>
                 <div className="col-3 m-auto">
-                    Player2
+                    Player'O'
                 </div>
             </div>
 
