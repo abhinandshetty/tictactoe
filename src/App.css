@@ -1,6 +1,6 @@
 .block-o {
   text-align: center;
-  font-size: 50px;
+  font-size: 60px;
   background: -webkit-linear-gradient( top right, rgb(240, 181, 103), rgb(255, 94, 0));
   -webkit-background-clip: text;
   background-clip: 'text';
@@ -11,7 +11,7 @@
 
 .block-x {
   text-align: center;
-  font-size: 50px;
+  font-size: 60px;
   background: -webkit-linear-gradient( top right, white, rgb(3, 3, 255));
   -webkit-background-clip: text;
   background-clip: 'text';
