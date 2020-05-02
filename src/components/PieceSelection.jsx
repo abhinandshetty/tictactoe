@@ -1,12 +1,33 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { selectPiece } from '../redux/game/game';
 import SettingsButton from './SettingsButton';
 
 const PieceSelection = () => {
     const dispatch = useDispatch();
-    const [piece, setPiece] = useState('xMoves')
+    const icons = [
+        { class: "block-x", name: "xMoves" },
+        { class: "block-o", name: "oMoves" }
+    ];
+    const [piece, setPiece] = useState('xMoves');
+
+    const renderIcons = () => ( icons.map(icon => (
+                <div className="col">
+                    <div className={`icon-font-main ${icon.class}`} style={{ opacity: piece === icon.name ? 1 : 0.4 }}></div>
+                </div>
+            )
+        )
+    );
+
+    const renderRadioButtons = () => ( icons.map(element => (
+                <div className="col text-center">
+                    <input type="radio" id={element.name} name="piece" className="custom-radio" checked={piece === element.name} onClick={() => setPiece(element.name)} />
+                    <label htmlFor={element.name}></label>
+                </div>
+            )
+        )
+    );
 
     return (
         <div className="container mx-auto mt-5">
@@ -15,22 +36,10 @@ const PieceSelection = () => {
                     <h6 className="mx-auto mt-4">Pick your side</h6>
                 </div>
                 <div className="row mx-auto mt-1">
-                    <div className="col">
-                        <div className="block-x icon-font-main" style={{opacity : piece ==='xMoves' ? 1 : 0.4}}></div>
-                    </div>
-                    <div className="col">
-                        <div className="block-o mr-3 icon-font-main" style={{opacity : piece ==='oMoves' ? 1 : 0.4}}></div>
-                    </div>
+                    { renderIcons() }
                 </div>
                 <div className="row mx-auto">
-                    <div className="col text-center">
-                        <input type="radio" id="X" name="piece" value="X" className="custom-radio" checked={piece==='xMoves'} onClick={()=>setPiece('xMoves')} />
-                        <label htmlFor="X"></label>
-                    </div>
-                    <div className="col text-center">
-                        <input type="radio" id="O" name="piece" value="O" className="custom-radio" checked={piece==='oMoves'} onClick={()=>setPiece('oMoves')}/>
-                        <label htmlFor="O"></label>
-                    </div>
+                    { renderRadioButtons() }
                 </div>
 
                 <div className="row mt-5">
@@ -44,4 +53,4 @@ const PieceSelection = () => {
     )
 }
 
-export default PieceSelection
+export default PieceSelection;
